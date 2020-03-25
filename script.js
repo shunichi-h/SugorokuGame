@@ -8,7 +8,7 @@ var toGoal = 100;
 //サイコロを振って得た出目を定義
 var diceDeme;
 //出目に応じて表示する図を定義
-var demeImage = "1.png";
+var demeImage = "img/1.png";
 //サイコロを振るのが何回目かを定義
 var diceRollCount = 1;
 
@@ -19,25 +19,35 @@ document.getElementById('currentSpace').innerHTML = "現在：スタート";
 document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal+"マス";
 
 //定義した「出目に応じた図」を、idにdemeImageがあるHTML要素に送る
-document.getElementById('demeImage').src =  demeImage;
+//document.getElementById('demeImage').src =  demeImage;
 
 //定義した「サイコロを振るのが何回目か」を、idにdiceRollCountがあるHTML要素に送る
 document.getElementById('diceRollCount').innerHTML = "サイコロを振ってください";
 
 document.getElementById(currentSpaceId).innerHTML = '<i class="fas fa-running"></i>';
 
+getdice6 = new Array(
+"img/1.png",
+"img/2.png",
+"img/3.png",
+"img/4.png",
+"img/5.png",
+"img/6.png");
+
+
 
 //サイコロを振った時に実行する関数を定義
 function rollDice() {
   //出目に「1〜6からランダムに取得した値を代入
   diceDeme = Math.floor(Math.random() * 6) + 1;
+  document.imgdice1.src =  getdice6[(diceDeme-1)];
   //取得した出目を、idにdiceDemeがあるHTML要素に送る
   document.getElementById('diceDeme').innerHTML = diceDeme;
 
   //出目に応じて表示する図のurlを定義
-  demeImage = diceDeme + '.png';
+  //demeImage = diceDeme + '.png';
   //出目に応じて表示する図のurlを、idにdiceImageがあるHTML要素に送る
-  document.getElementById('demeImage').src =  demeImage;
+  //document.getElementById('demeImage').src =  demeImage;
 
   document.getElementById('diceRollCount').innerHTML = diceRollCount+"投目";
   diceRollCount ++;
@@ -63,11 +73,8 @@ function rollDice() {
   currentSpaceId = ("g" + currentSpace);
   document.getElementById(currentSpaceId).innerHTML = '<i id="now" class="fas fa-running"></i>';
 
-  var position = $('#now').position().top;
-  document.getElementById('test').innerHTML = position;
+  var element = document.getElementById('now');
+  element.scrollIntoView({behavior: 'smooth', block: 'center'});
 
-  $('.grids').animate({
-    'scrollTop': position
-  },500);
 
 }

@@ -13,7 +13,6 @@ body {
   max-width: 1000px;
   padding: : 0 15px;
   margin: 20px auto;
-  border: 1px solid black;
 }
 
 .clear {
@@ -21,7 +20,7 @@ body {
 }
 
 .title {
-  padding-left: 30px;
+  text-align: center;
 }
 
 .game {
@@ -40,14 +39,14 @@ body {
 
 .dice-btn {
   border-radius: 10px;
-  background-color: #ff0000;
+  background-color: #8ad2ff;
   display: inline-block;
   width: 30%;
   height: 50px;
   line-height: 50px;
   margin: 50px 0 20px 0;
   text-decoration: none;
-  box-shadow: 0 7px #990000;
+  box-shadow: 0 7px #537e99;
 }
 
 .dice-btn:active {
@@ -84,7 +83,7 @@ body {
   position: relative;
   top: 0;
   left: 0;
-  border: 1px solid black;
+
 }
 
 .grid {
