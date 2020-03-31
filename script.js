@@ -14,6 +14,8 @@ var diceRollCount = 1;
 //コマが移動する数
 var moveCount;
 
+var element;
+
 //定義した現在のマスを、idにcurrentSpaceがあるHTML要素に送る
 document.getElementById('currentSpace').innerHTML = "現在：スタート";
 
@@ -71,14 +73,61 @@ function forward(){
   }
 
   document.getElementById(currentSpaceId).innerHTML = '<i id="now" class="fas fa-running"></i>';
-  var element = document.getElementById('now');
+  element = document.getElementById('now');
   element.scrollIntoView({behavior: 'smooth', block: 'center'});
   moveCount--;
   if (moveCount >=1 )  { tim = setTimeout("forward()",500);}
 }
 
+//コマを戻す
+function back(){
+  document.getElementById(currentSpaceId).innerHTML = "";
+  currentSpace --;
+  currentSpaceId = ("g" + currentSpace);
+  document.getElementById('currentSpace').innerHTML = "現在："+currentSpace+"マス目";
+  toGoal ++;
+  document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal+"マス";
+  document.getElementById(currentSpaceId).innerHTML = '<i id="now" class="fas fa-running"></i>';
+  element = document.getElementById('now');
+  element.scrollIntoView({behavior: 'smooth', block: 'center'});
+  moveCount--;
+  if (moveCount >=1 )  { tim = setTimeout("back()",500);}
+}
 
-//サイコロを振った時に実行する関数を定義
+
+//進むイベント
+function eventForward() {
+  moveCount = Math.floor(Math.random() * 4) + 1;
+  document.getElementById('diceRollCount').innerHTML = "あたりマス！"+moveCount+"マス進む";
+  forward();
+}
+
+//戻るイベント
+function eventBack(){
+  moveCount = Math.floor(Math.random() * 4) + 1;
+  document.getElementById('diceRollCount').innerHTML = "はずれマス！"+moveCount+"マス戻る";
+  back();
+}
+
+
+//イベントで進むor戻るを決定
+function events() {
+  var eventNum = Math.floor(Math.random() * 2) + 1;
+  if(eventNum === 1){
+    eventForward();
+  }else if(eventNum === 2){
+    eventBack();
+  }
+
+}
+
+
+
+
+
+
+
+//サイコロを振った時に実行する
 function rollDiceAction() {
   //出目に「1〜6からランダムに取得した値を代入
   diceDeme = Math.floor(Math.random() * 6) + 1;
@@ -92,13 +141,19 @@ function rollDiceAction() {
 
   moveCount = diceDeme;
   forward();
-
-
-
 }
+
 
 function rollDice(){
   animate();
   var rollTime = count * mSec + 100;
   setTimeout(rollDiceAction,rollTime);
+  rollTime += 4000;
+  setTimeout(function(){
+    if( currentSpace % 5 == 0 ){
+      events();
+    }
+  },rollTime);
+
+
 }
