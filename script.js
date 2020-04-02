@@ -76,7 +76,13 @@ function forward(){
   element = document.getElementById('now');
   element.scrollIntoView({behavior: 'smooth', block: 'center'});
   moveCount--;
-  if (moveCount >=1 )  { tim = setTimeout("forward()",500);}
+  if (moveCount >=1 )  {
+    tim = setTimeout("forward()",500);
+  }else if (document.getElementById(currentSpaceId).classList.contains('event') == true){
+    tim = setTimeout(events,1000);
+  }
+
+
 }
 
 //コマを戻す
@@ -118,13 +124,7 @@ function events() {
   }else if(eventNum === 2){
     eventBack();
   }
-
 }
-
-
-
-
-
 
 
 //サイコロを振った時に実行する
@@ -141,6 +141,7 @@ function rollDiceAction() {
 
   moveCount = diceDeme;
   forward();
+
 }
 
 
@@ -148,12 +149,8 @@ function rollDice(){
   animate();
   var rollTime = count * mSec + 100;
   setTimeout(rollDiceAction,rollTime);
-  rollTime += 4000;
-  setTimeout(function(){
-    if( currentSpace % 5 == 0 ){
-      events();
-    }
-  },rollTime);
+
+
 
 
 }
