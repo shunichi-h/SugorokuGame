@@ -20,9 +20,40 @@
 			<div class="title">
 				<h1>すごろくゲーム</h1>
 			</div>
-			<div class="game roll-dice">
-				<div>
-					<p id="diceBtn" class="dice-btn" onclick="rollDice();">サイコロを振る</p>
+
+      <div class="menu" id="menu">
+        <p class="menu-text"> プレイ人数を選択してください</p>
+        <div class="choice-box" onclick="onePlayer();">
+          <p class="choice choice-text">1人でプレイ</p>
+          <p class="choice choice-icon"><i class="fas fa-male p1"></i></p>
+        </div>
+        <div class="choice-box" onclick="twoPlayer();">
+          <p class="choice choice-text">2人でプレイ</p>
+          <p class="choice choice-icon"><i class="fas fa-male p1"></i><i class="fas fa-male p2"></i></p>
+        </div>
+        <div class="choice-box" onclick="threePlayer();">
+          <p class="choice choice-text">3人でプレイ</p>
+          <p class="choice choice-icon"><i class="fas fa-male p1"></i><i class="fas fa-male p2"></i><i class="fas fa-male p3"></i></p>
+        </div>
+        <div class="choice-box" onclick="fourPlayer();">
+          <p class="choice choice-text">4人でプレイ</p>
+          <p class="choice choice-icon"><i class="fas fa-male p1"></i><i class="fas fa-male p2"></i><i class="fas fa-male p3"></i><i class="fas fa-male p4"></i></p>
+        </div>
+
+
+
+
+
+      </div>
+
+			<div class="game roll-dice" id="gameRollDice">
+
+        <div class="player-turn">
+          <p><span id="playerTurn"></span></p>
+        </div>
+
+        <div>
+					<p id="diceBtn" class="dice-btn" onclick="rollDice1()">サイコロを振る</p>
 				</div>
 
         <div class="diceroll-count">
@@ -46,7 +77,7 @@
 				</div>
 
 			</div>
-			<div class="game grids">
+			<div class="game grids" id="gameGrids">
         <div class="grid">スタート<br><span class="c-icon" id="g0"></span></div>
         <div class="grid">1<br><span class="c-icon" id="g1"></span></div>
         <div class="grid">2<br><span class="c-icon" id="g2"></span></div>
