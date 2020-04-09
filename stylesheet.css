@@ -41,7 +41,7 @@ body {
   margin-top: 30px;
   background-color: #d3d3d3;
   border-radius: 5px;
-  box-shadow: 0 7px #808080;
+  box-shadow: 7px 7px #808080;
 }
 
 .choice-box:hover {
@@ -101,7 +101,7 @@ body {
 
 .game {
   float: left;
-  display: none;
+  isplay: none;
 }
 
 .game p {
@@ -114,7 +114,7 @@ body {
   text-align: center;
 }
 
-.dice-btn {
+#diceBtn {
   border-radius: 5px;
   border: 1px solid black;
   background-color: #d3d3d3;
@@ -124,13 +124,14 @@ body {
   line-height: 50px;
   margin: 10px 0 20px 0;
   text-decoration: none;
-  box-shadow: 0 7px #808080;
+  box-shadow: 7px 7px #d3d3d3;
 }
 
-.dice-btn:active {
-  box-shadow: none;
+#diceBtn:active {
   position: relative;
   top: 7px;
+  box-shadow: none;
+
 }
 
 

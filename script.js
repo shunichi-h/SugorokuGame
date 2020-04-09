@@ -1,4 +1,5 @@
 
+
 var playerNum
 //現在のマス
 var currentSpace1 = 0;
@@ -24,28 +25,19 @@ var diceRollCount1 = 1;
 var diceRollCount2 = 1;
 var diceRollCount3 = 1;
 var diceRollCount4 = 1;
+
+var child1;
+var child2;
+var child3;
+var child4;
+
 //コマが移動する数
 var moveCount;
 
 var element;
 
-var turnTime = 2000;
+var turnTime = 1000;
 
-
-
-//定義した現在のマスを、idにcurrentSpaceがあるHTML要素に送る
-//document.getElementById('currentSpace').innerHTML = "現在：スタート";
-
-//定義したゴールまでのマス数を、idにtoGoalがあるHTML要素に送る
-//document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal+"マス";
-
-//定義した「出目に応じた図」を、idにdemeImageがあるHTML要素に送る
-////document.getElementById('demeImage').src =  demeImage;
-
-//定義した「サイコロを振るのが何回目か」を、idにdiceRollCountがあるHTML要素に送る
-//document.getElementById('diceRollCount').innerHTML = "サイコロを振ってください";
-
-//document.getElementById(currentSpaceId).innerHTML = '<i class="fas fa-male p1"></i>';
 
 getdice6 = new Array(
 "img/1.png",
@@ -70,26 +62,27 @@ function animate(){
 
 //コマを進める
 function forward1(){
-  var child1 = document.getElementById('now1');
+  child1 = document.getElementById('now1');
   document.getElementById(currentSpaceId1).removeChild(child1);
   currentSpace1 ++;
   currentSpaceId1 = ("g" + currentSpace1);
 
   if(currentSpace1 >= 100){
-    document.getElementById('currentSpace').innerHTML = "";
+    document.getElementById('currentSpace').innerHTML = "ゴールしました!";
   }else{
     document.getElementById('currentSpace').innerHTML = "現在："+currentSpace1+"マス目";
   }
 
   toGoal1 --;
   if(toGoal1 <= 0){
-    document.getElementById('toGoal').innerHTML = "ゴールしました!";
+    document.getElementById('toGoal').innerHTML = "プレイヤー１の勝利！";
     document.getElementById('diceBtn').onclick = "";
-    document.getElementById('g100').innerHTML = '<i class="fas fa-child p1"></i>';
+    document.getElementById('g100').insertAdjacentHTML('afterbegin','<i id="now1" class="fas fa-child p1"></i>');
   }else{
     document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal1+"マス";
+    document.getElementById(currentSpaceId1).insertAdjacentHTML('afterbegin','<i id="now1" class="fas fa-running p1"></i>');
   }
-  document.getElementById(currentSpaceId1).insertAdjacentHTML('afterbegin','<i id="now1" class="fas fa-running p1"></i>');
+
   element = document.getElementById('now1');
   element.scrollIntoView({behavior: 'smooth', block: 'center'});
   moveCount--;
@@ -97,35 +90,34 @@ function forward1(){
     tim = setTimeout("forward1()",500);
   }else if (document.getElementById(currentSpaceId1).classList.contains('event') == true){
     tim = setTimeout(events1,1000);
-  }else if (playerNum == 1){
+  }else if (playerNum == 1 && toGoal1 > 0){
     tim = setTimeout(onePlayerAction,turnTime);
-  }else {
+  }else if (playerNum >= 2 && toGoal1 > 0){
     tim = setTimeout(twoPlayerAction,turnTime);
   }
 }
 
 function forward2(){
-  var child2 = document.getElementById('now2');
+  child2 = document.getElementById('now2');
   document.getElementById(currentSpaceId2).removeChild(child2);
   currentSpace2 ++;
   currentSpaceId2 = ("g" + currentSpace2);
 
   if(currentSpace2 >= 100){
-    document.getElementById('currentSpace').innerHTML = "";
+    document.getElementById('currentSpace').innerHTML = "ゴールしました!";
   }else{
     document.getElementById('currentSpace').innerHTML = "現在："+currentSpace2+"マス目";
   }
 
   toGoal2 --;
   if(toGoal2 <= 0){
-    document.getElementById('toGoal').innerHTML = "ゴールしました!";
+    document.getElementById('toGoal').innerHTML = "プレイヤー２の勝利!";
     document.getElementById('diceBtn').onclick = "";
-    document.getElementById('g100').innerHTML = '<i class="fas fa-child p2"></i>';
+    document.getElementById('g100').insertAdjacentHTML('afterbegin','<i id="now2" class="fas fa-child p2"></i>');
   }else{
     document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal2+"マス";
+    document.getElementById(currentSpaceId2).insertAdjacentHTML('afterbegin','<i id="now2" class="fas fa-running p2"></i>');
   }
-
-  document.getElementById(currentSpaceId2).insertAdjacentHTML('afterbegin','<i id="now2" class="fas fa-running p2"></i>');
   element = document.getElementById('now2');
   element.scrollIntoView({behavior: 'smooth', block: 'center'});
   moveCount--;
@@ -133,35 +125,34 @@ function forward2(){
     tim = setTimeout("forward2()",500);
   }else if (document.getElementById(currentSpaceId2).classList.contains('event') == true){
     tim = setTimeout(events2,1000);
-  }else if (playerNum <= 2){
+  }else if (playerNum <= 2 && toGoal2 > 0){
     tim = setTimeout(onePlayerAction,turnTime);
-  }else {
+  }else if (playerNum >= 3 && toGoal2 > 0){
     tim = setTimeout(threePlayerAction,turnTime);
   }
 }
 
 function forward3(){
-  var child3 = document.getElementById('now3');
+  child3 = document.getElementById('now3');
   document.getElementById(currentSpaceId3).removeChild(child3);
   currentSpace3 ++;
   currentSpaceId3 = ("g" + currentSpace3);
 
   if(currentSpace3 >= 100){
-    document.getElementById('currentSpace').innerHTML = "";
+    document.getElementById('currentSpace').innerHTML = "ゴールしました!";
   }else{
     document.getElementById('currentSpace').innerHTML = "現在："+currentSpace3+"マス目";
   }
 
   toGoal3 --;
   if(toGoal3 <= 0){
-    document.getElementById('toGoal').innerHTML = "ゴールしました!";
+    document.getElementById('toGoal').innerHTML = "プレイヤー３の勝利!";
     document.getElementById('diceBtn').onclick = "";
-    document.getElementById('g100').innerHTML = '<i class="fas fa-child p3"></i>';
+    document.getElementById('g100').insertAdjacentHTML('afterbegin','<i id="now3" class="fas fa-child p3"></i>');
   }else{
     document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal3+"マス";
+    document.getElementById(currentSpaceId3).insertAdjacentHTML('afterbegin','<i id="now3" class="fas fa-running p3"></i>');
   }
-
-  document.getElementById(currentSpaceId3).insertAdjacentHTML('afterbegin','<i id="now3" class="fas fa-running p3"></i>');
   element = document.getElementById('now3');
   element.scrollIntoView({behavior: 'smooth', block: 'center'});
   moveCount--;
@@ -169,35 +160,34 @@ function forward3(){
     tim = setTimeout("forward3()",500);
   }else if (document.getElementById(currentSpaceId3).classList.contains('event') == true){
     tim = setTimeout(events3,1000);
-  }else if (playerNum <= 3){
+  }else if (playerNum <= 3 && toGoal3 > 0){
     tim = setTimeout(onePlayerAction,turnTime);
-  }else {
+  }else if (playerNum >= 4 && toGoal3 > 0){
     tim = setTimeout(fourPlayerAction,turnTime);
   }
 }
 
 function forward4(){
-  var child4 = document.getElementById('now4');
+  child4 = document.getElementById('now4');
   document.getElementById(currentSpaceId4).removeChild(child4);
   currentSpace4 ++;
   currentSpaceId4 = ("g" + currentSpace4);
 
   if(currentSpace4 >= 100){
-    document.getElementById('currentSpace').innerHTML = "";
+    document.getElementById('currentSpace').innerHTML = "ゴールしました!";
   }else{
     document.getElementById('currentSpace').innerHTML = "現在："+currentSpace4+"マス目";
   }
 
   toGoal4 --;
   if(toGoal4 <= 0){
-    document.getElementById('toGoal').innerHTML = "ゴールしました!";
+    document.getElementById('toGoal').innerHTML = "プレイヤー４の勝利!";
     document.getElementById('diceBtn').onclick = "";
-    document.getElementById('g100').innerHTML = '<i class="fas fa-child p4"></i>';
+    document.getElementById('g100').insertAdjacentHTML('afterbegin','<i id="now4" class="fas fa-child p4"></i>');
   }else{
     document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal4+"マス";
+    document.getElementById(currentSpaceId4).insertAdjacentHTML('afterbegin','<i id="now4" class="fas fa-running p4"></i>');
   }
-
-  document.getElementById(currentSpaceId4).insertAdjacentHTML('afterbegin','<i id="now4" class="fas fa-running p4"></i>');
   element = document.getElementById('now4');
   element.scrollIntoView({behavior: 'smooth', block: 'center'});
   moveCount--;
@@ -212,7 +202,7 @@ function forward4(){
 
 //コマを戻す
 function back1(){
-  var child1 = document.getElementById('now1');
+  child1 = document.getElementById('now1');
   document.getElementById(currentSpaceId1).removeChild(child1);
   currentSpace1 --;
   currentSpaceId1 = ("g" + currentSpace1);
@@ -233,7 +223,7 @@ function back1(){
 }
 
 function back2(){
-  var child2 = document.getElementById('now2');
+  child2 = document.getElementById('now2');
   document.getElementById(currentSpaceId2).removeChild(child2);
   currentSpace2 --;
   currentSpaceId2 = ("g" + currentSpace2);
@@ -254,7 +244,7 @@ function back2(){
 }
 
 function back3(){
-  var child3 = document.getElementById('now3');
+  child3 = document.getElementById('now3');
   document.getElementById(currentSpaceId3).removeChild(child3);
   currentSpace3 --;
   currentSpaceId3 = ("g" + currentSpace3);
@@ -275,7 +265,7 @@ function back3(){
 }
 
 function back4(){
-  var child4 = document.getElementById('now4');
+  child4 = document.getElementById('now4');
   document.getElementById(currentSpaceId4).removeChild(child4);
   currentSpace4 --;
   currentSpaceId4 = ("g" + currentSpace4);
@@ -487,7 +477,7 @@ function onePlayerAction(){
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal1+"マス";
 
   document.getElementById('diceBtn').style.backgroundColor ="#ff3333";
-  document.getElementById('diceBtn').style.boxShadow ="0 7px #b32424";
+  //document.getElementById('diceBtn').style.boxShadow ="0 7px #b32424";
 }
 
 function twoPlayerAction(){
@@ -505,7 +495,7 @@ function twoPlayerAction(){
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal2+"マス";
 
   document.getElementById('diceBtn').style.backgroundColor ="#3333ff";
-  document.getElementById('diceBtn').style.boxShadow ="0 7px #2929cc";
+  //document.getElementById('diceBtn').style.boxShadow ="0 7px #2929cc";
 }
 
 function threePlayerAction(){
@@ -523,7 +513,7 @@ function threePlayerAction(){
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal3+"マス";
 
   document.getElementById('diceBtn').style.backgroundColor ="#ffff33";
-  document.getElementById('diceBtn').style.boxShadow ="0 7px #cccc29";
+  //document.getElementById('diceBtn').style.boxShadow ="0 7px #cccc29";
 }
 
 function fourPlayerAction(){
@@ -541,7 +531,7 @@ function fourPlayerAction(){
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal4+"マス";
 
   document.getElementById('diceBtn').style.backgroundColor ="#00cc00";
-  document.getElementById('diceBtn').style.boxShadow ="0 7px #009900";
+  //document.getElementById('diceBtn').style.boxShadow ="0 7px #009900";
 }
 
 function allPlayer(){
