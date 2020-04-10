@@ -101,7 +101,7 @@ body {
 
 .game {
   float: left;
-  isplay: none;
+  display: none;
 }
 
 .game p {
