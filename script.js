@@ -59,6 +59,46 @@ function animate(){
       if (count ==0 )  { count = 20 ;}
 }
 
+function setInputValueCS1(){
+  document.getElementById("inputCS1").value = currentSpace1;
+}
+function setInputValueTG1(){
+  document.getElementById("inputTG1").value = toGoal1;
+}
+function setInputValueDRC1(){
+  document.getElementById("inputDRC1").value = diceRollCount1;
+}
+
+function setInputValueCS2(){
+  document.getElementById("inputCS2").value = currentSpace2;
+}
+function setInputValueTG2(){
+  document.getElementById("inputTG2").value = toGoal2;
+}
+function setInputValueDRC2(){
+  document.getElementById("inputDRC2").value = diceRollCount2;
+}
+
+function setInputValueCS3(){
+  document.getElementById("inputCS3").value = currentSpace3;
+}
+function setInputValueTG3(){
+  document.getElementById("inputTG3").value = toGoal3;
+}
+function setInputValueDRC3(){
+  document.getElementById("inputDRC3").value = diceRollCount3;
+}
+
+function setInputValueCS4(){
+  document.getElementById("inputCS4").value = currentSpace4;
+}
+function setInputValueTG4(){
+  document.getElementById("inputTG4").value = toGoal4;
+}
+function setInputValueDRC4(){
+  document.getElementById("inputDRC4").value = diceRollCount4;
+}
+
 
 //コマを進める
 function forward1(){
@@ -66,7 +106,7 @@ function forward1(){
   document.getElementById(currentSpaceId1).removeChild(child1);
   currentSpace1 ++;
   currentSpaceId1 = ("g" + currentSpace1);
-
+  setInputValueCS1();
   if(currentSpace1 >= 100){
     document.getElementById('currentSpace').innerHTML = "ゴールしました!";
   }else{
@@ -74,6 +114,7 @@ function forward1(){
   }
 
   toGoal1 --;
+  setInputValueTG1();
   if(toGoal1 <= 0){
     document.getElementById('toGoal').innerHTML = "プレイヤー１の勝利！";
     document.getElementById('diceBtn').onclick = "";
@@ -102,7 +143,7 @@ function forward2(){
   document.getElementById(currentSpaceId2).removeChild(child2);
   currentSpace2 ++;
   currentSpaceId2 = ("g" + currentSpace2);
-
+  setInputValueCS2();
   if(currentSpace2 >= 100){
     document.getElementById('currentSpace').innerHTML = "ゴールしました!";
   }else{
@@ -110,6 +151,7 @@ function forward2(){
   }
 
   toGoal2 --;
+  setInputValueTG2();
   if(toGoal2 <= 0){
     document.getElementById('toGoal').innerHTML = "プレイヤー２の勝利!";
     document.getElementById('diceBtn').onclick = "";
@@ -137,7 +179,7 @@ function forward3(){
   document.getElementById(currentSpaceId3).removeChild(child3);
   currentSpace3 ++;
   currentSpaceId3 = ("g" + currentSpace3);
-
+  setInputValueCS3();
   if(currentSpace3 >= 100){
     document.getElementById('currentSpace').innerHTML = "ゴールしました!";
   }else{
@@ -145,6 +187,7 @@ function forward3(){
   }
 
   toGoal3 --;
+  setInputValueTG3();
   if(toGoal3 <= 0){
     document.getElementById('toGoal').innerHTML = "プレイヤー３の勝利!";
     document.getElementById('diceBtn').onclick = "";
@@ -172,7 +215,7 @@ function forward4(){
   document.getElementById(currentSpaceId4).removeChild(child4);
   currentSpace4 ++;
   currentSpaceId4 = ("g" + currentSpace4);
-
+  setInputValueCS4();
   if(currentSpace4 >= 100){
     document.getElementById('currentSpace').innerHTML = "ゴールしました!";
   }else{
@@ -180,6 +223,7 @@ function forward4(){
   }
 
   toGoal4 --;
+  setInputValueTG4();
   if(toGoal4 <= 0){
     document.getElementById('toGoal').innerHTML = "プレイヤー４の勝利!";
     document.getElementById('diceBtn').onclick = "";
@@ -206,8 +250,10 @@ function back1(){
   document.getElementById(currentSpaceId1).removeChild(child1);
   currentSpace1 --;
   currentSpaceId1 = ("g" + currentSpace1);
+  setInputValueCS1();
   document.getElementById('currentSpace').innerHTML = "現在："+currentSpace1+"マス目";
   toGoal1 ++;
+  setInputValueTG1();
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal1+"マス";
   document.getElementById(currentSpaceId1).insertAdjacentHTML('afterbegin','<i id="now1" class="fas fa-running p1"></i>');
   element = document.getElementById('now1');
@@ -227,8 +273,10 @@ function back2(){
   document.getElementById(currentSpaceId2).removeChild(child2);
   currentSpace2 --;
   currentSpaceId2 = ("g" + currentSpace2);
+  setInputValueCS2();
   document.getElementById('currentSpace').innerHTML = "現在："+currentSpace2+"マス目";
   toGoal2 ++;
+  setInputValueTG2();
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal2+"マス";
   document.getElementById(currentSpaceId2).insertAdjacentHTML('afterbegin','<i id="now2" class="fas fa-running p2"></i>');
   element = document.getElementById('now2');
@@ -248,8 +296,10 @@ function back3(){
   document.getElementById(currentSpaceId3).removeChild(child3);
   currentSpace3 --;
   currentSpaceId3 = ("g" + currentSpace3);
+  setInputValueCS3();
   document.getElementById('currentSpace').innerHTML = "現在："+currentSpace3+"マス目";
   toGoal3 ++;
+  setInputValueTG3();
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal3+"マス";
   document.getElementById(currentSpaceId3).insertAdjacentHTML('afterbegin','<i id="now3" class="fas fa-running p3"></i>');
   element = document.getElementById('now3');
@@ -269,8 +319,10 @@ function back4(){
   document.getElementById(currentSpaceId4).removeChild(child4);
   currentSpace4 --;
   currentSpaceId4 = ("g" + currentSpace4);
+  setInputValueCS4();
   document.getElementById('currentSpace').innerHTML = "現在："+currentSpace4+"マス目";
   toGoal4 ++;
+  setInputValueTG4();
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal4+"マス";
   document.getElementById(currentSpaceId4).insertAdjacentHTML('afterbegin','<i id="now4" class="fas fa-running p4"></i>');
   element = document.getElementById('now4');
@@ -473,6 +525,7 @@ function onePlayerAction(){
     document.getElementById('currentSpace').innerHTML = "現在："+currentSpace1+"マス目";
   }
   document.getElementById('diceRollCount').innerHTML = diceRollCount1+"投目";
+  setInputValueDRC1();
   document.getElementById('diceDeme').innerHTML = "";
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal1+"マス";
 
@@ -491,6 +544,7 @@ function twoPlayerAction(){
     document.getElementById('currentSpace').innerHTML = "現在："+currentSpace2+"マス目";
   }
   document.getElementById('diceRollCount').innerHTML = diceRollCount2+"投目";
+  setInputValueDRC2();
   document.getElementById('diceDeme').innerHTML = "";
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal2+"マス";
 
@@ -509,6 +563,7 @@ function threePlayerAction(){
     document.getElementById('currentSpace').innerHTML = "現在："+currentSpace3+"マス目";
   }
   document.getElementById('diceRollCount').innerHTML = diceRollCount3+"投目";
+  setInputValueDRC3();
   document.getElementById('diceDeme').innerHTML = "";
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal3+"マス";
 
@@ -527,6 +582,7 @@ function fourPlayerAction(){
     document.getElementById('currentSpace').innerHTML = "現在："+currentSpace4+"マス目";
   }
   document.getElementById('diceRollCount').innerHTML = diceRollCount4+"投目";
+  setInputValueDRC4();
   document.getElementById('diceDeme').innerHTML = "";
   document.getElementById('toGoal').innerHTML = "ゴールまで"+toGoal4+"マス";
 

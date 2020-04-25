@@ -23,10 +23,16 @@ body {
   text-align: center;
 }
 
+
+.game-form {
+  border: 1px solid black;
+}
+
 .menu {
   height: 550px;
   text-align: center;
-  margin: 0 auto;;
+  margin: 0 auto;
+
 }
 
 .menu-text {
