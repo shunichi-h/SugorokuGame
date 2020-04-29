@@ -8,7 +8,7 @@
   }
 
 
-
+  $nxpl = $_POST["nxpl"];
   $cs1 = $_POST["cs1"];
   $tg1 = $_POST["tg1"];
   $drc1 = $_POST["drc1"];
@@ -24,6 +24,9 @@
   $cs4 = $_POST["cs4"];
   $tg4 = $_POST["tg4"];
   $drc4 = $_POST["drc4"];
+
+  $sqlnxpl = "UPDATE playernumber2 SET nextplayer = $nxpl WHERE id = 1";
+  $res = $pdo->query($sqlnxpl);
 
   $sql1 = "UPDATE sugoroku2 SET currentspace = $cs1, togoal = $tg1, dicerollcount = $drc1 WHERE player = 1";
   $res = $pdo->query($sql1);
@@ -41,6 +44,10 @@
   foreach ($pdo->query('select * from sugoroku2') as $row) {
   echo "<p>プレイヤー$row[player]:現在のマス→$row[currentspace]:ゴールまで→$row[togoal]:次のターン→$row[dicerollcount]投目</p>";
   }
+
+  echo "次のターン：プレイヤー{$nxpl}";
+
+
 
 
 
