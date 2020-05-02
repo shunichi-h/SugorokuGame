@@ -15,7 +15,7 @@
 
   <?php
     try {
-      $pdo = new PDO ( 'mysql:host=localhost;dbname=SUGOROKU_DB;charset=utf8','shunichi', 'shun0505');
+      $pdo = new PDO ( 'mysql:host=us-cdbr-east-06.cleardb.net;dbname=heroku_23246dfcd368977;charset=utf8','b0d6d5442f2d1c', 'b723a602');
       //print 'ゲームの進行状況を保存しました。';
     } catch ( PDOException $e ) {
       print "接続エラー:{$e->getMessage()}";
