@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SUGOROKU GAME</title>
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="gamestylesheet.css?123">
+  <link rel="stylesheet" type="text/css" href="gamestylesheet.css?1234">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
@@ -18,7 +18,7 @@
       $pdo = new PDO ( 'mysql:host=localhost;dbname=SUGOROKU_DB;charset=utf8','shunichi', 'shun0505');
       //print 'ゲームの進行状況を保存しました。';
     } catch ( PDOException $e ) {
-      //print "接続エラー:{$e->getMessage()}";
+      print "接続エラー:{$e->getMessage()}";
     }
 
     $pn = $_POST["plnm"];
@@ -62,8 +62,24 @@
   ?>
 
   <script type="text/javascript">
-    var pn='<?php echo $pn; ?>';
-    var nxpl='<?php echo $nxpl; ?>';
+    var pn = '<?php echo $pn; ?>';
+    var nxpl = '<?php echo $nxpl; ?>';
+
+    var currentSpace1 = '<?php echo $cs1; ?>';
+    var currentSpace2 = '<?php echo $cs2; ?>';
+    var currentSpace3 = '<?php echo $cs3; ?>';
+    var currentSpace4 = '<?php echo $cs4; ?>';
+
+    var toGoal1 = '<?php echo $tg1; ?>';
+    var toGoal2 = '<?php echo $tg2; ?>';
+    var toGoal3 = '<?php echo $tg3; ?>';
+    var toGoal4 = '<?php echo $tg4; ?>';
+
+    var diceRollCount1 = '<?php echo $drc1; ?>';
+    var diceRollCount2 = '<?php echo $drc2; ?>';
+    var diceRollCount3 = '<?php echo $drc3; ?>';
+    var diceRollCount4 = '<?php echo $drc4; ?>';
+
   </script>
 
   <?php $pdo = null; ?>
@@ -217,8 +233,9 @@
 
       <div class="game-form">
         <p>フォーム（最終的に隠す）</p>
-        <form name="gameform" action = "db.php" method = "post">
+        <form name="gameform" action = "result.php" method = "post">
 
+          <p>playerNum</p> <input id="playerNum" type = "text" name ="plnm"><br/>
           <p>nextPlayer</p> <input id="nextPlayer" type = "text" name ="nxpl"><br/>
 
           <p>currentSpace1</p> <input id="inputCS1" type = "text" name ="cs1"><br/>
@@ -249,7 +266,7 @@
   </div>
 
 
-  <script src="gamescript.js?1234">
+  <script src="gamescript.js?123">
   </script>
 
 </body>
